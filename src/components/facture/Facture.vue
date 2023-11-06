@@ -1,7 +1,7 @@
 <template>
     <div>
-<Entetefacture :fact="facture"/>
-<Detailfacture :articles="articles" />
+<Entetefacture :fact="facture" />
+<Detailfacture  />
 <Formfacture :ajoutLigne="ajoutLigne"/>
 
     </div>
@@ -13,6 +13,8 @@ import Entetefacture from "./Entetefacture.vue";
 import Formfacture from "./Formfacture.vue";
 import Detailfacture from "./Detailfacture.vue";
 
+import { articles } from './sharedStore';
+
 const facture =ref({
                 numfact:"100",
                 datefact:"18/05/2022",
@@ -21,12 +23,7 @@ const facture =ref({
 
             });
             
-            const articles=ref([
-                {reference:"1",designation:"la vaisselle",qte:3,prix:1500},
-                {reference:"3",designation:"Machine a laver",qte:3,prix:1200},
-                {reference:"17",designation:"Micro-onde",qte:4,prix:300}
-            ]);
-     
+    
     const ajoutLigne =(ref,des,qt,pr)=>{
    //on construit la nouvelle ligne
          let ligne={reference:ref,designation:des,qte:qt,prix:pr}

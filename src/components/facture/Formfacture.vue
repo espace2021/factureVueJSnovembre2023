@@ -40,6 +40,9 @@
 
 <script setup>
 import { ref } from 'vue';
+
+import { recalculateMontantTotal } from './sharedStore';
+
 const props = defineProps(['ajoutLigne'])
         const reference=ref()
         const des=ref()
@@ -52,6 +55,9 @@ const props = defineProps(['ajoutLigne'])
           des.value=""
           qte.value=0
           prix.value=0
+
+          recalculateMontantTotal()
+
         }
 
 </script>

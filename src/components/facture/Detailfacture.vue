@@ -61,13 +61,18 @@
 </template>
 
 <script setup>
-const props = defineProps(['articles']);
+
+
+//const props = defineProps(['articles']);
+
+import { articles, recalculateMontantTotal } from './sharedStore';
 
 const deleteArticle = (index) => { 
   // on utilise l'index de l'article à supprimer
-  if (index >= 0 && index < props.articles.length) {
-    props.articles.splice(index, 1);
+  if (index >= 0 && index < articles.value.length) {
+    articles.value.splice(index, 1);
   }
+  recalculateMontantTotal ()
 };
 
 const toggleEditMode = (article) => {
@@ -75,15 +80,16 @@ const toggleEditMode = (article) => {
 };
 
 const updateArticle = (index) => {
-  if (index >= 0 && index < props.articles.length) {
-    const article = props.articles[index];
+  if (index >= 0 && index < articles.value.length) {
+    const article = articles.value[index];
     article.montant = article.prix * article.qte;
    
   }
+  recalculateMontantTotal ()
 };
 
 // Initialise l'état "editMode" pour chaque article
-props.articles.forEach((article) => {
+articles.value.forEach((article) => {
   article.editMode = false;
 });
 
